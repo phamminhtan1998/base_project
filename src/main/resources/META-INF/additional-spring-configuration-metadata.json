@@ -1,0 +1,48 @@
+{
+  "properties": [
+    {
+      "name": "phamtan.onesignal.app-id",
+      "type": "java.lang.String",
+      "description": "App id of one signal."
+    },
+    {
+      "name": "phamtan.onesignal.secret-key",
+      "type": "java.lang.String",
+      "description": "Secret key for app of the one signal."
+    },
+    {
+      "name": "phamtan.email.url",
+      "type": "java.lang.String",
+      "description": "Url of one signal /n Default https://onesignal.com/api/v1/notifications."
+    },
+    {
+      "name": "phamtan.email.port",
+      "type": "java.lang.Integer",
+      "description": "Port to connect mail server ."
+    },
+    {
+      "name": "phamtan.email.username",
+      "type": "java.lang.String",
+      "description": "Username to connect  connect mail server ."
+    },
+    {
+      "name": "phamtan.email.host",
+      "type": "java.lang.String",
+      "description": "Host to connect  connect mail server ."
+    },
+    {
+      "name": "phamtan.email.password",
+      "type": "java.lang.String",
+      "description": "Password to connect  connect mail server ."
+    },
+    {
+      "name": "phamtan.email.stmp-auth",
+      "type": "java.lang.Boolean",
+      "description": "If turn on stmp auth  ."
+    },
+    {
+      "name": "phamtan.email.starttls",
+      "type": "java.lang.Boolean",
+      "description": "Turn on starttls auth  ."
+    }
+  ] }
