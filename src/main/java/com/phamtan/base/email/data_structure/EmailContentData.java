@@ -15,6 +15,7 @@ public class EmailContentData {
     /**
      * Description for data
      */
-    private DataDescription value;
+    private String name ;
+    private String data ;
 
 }

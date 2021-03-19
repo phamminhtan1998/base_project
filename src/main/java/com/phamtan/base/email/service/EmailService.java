@@ -1,6 +1,7 @@
 package com.phamtan.base.email.service;
 
 import com.phamtan.base.email.data_structure.EmailContentData;
+import com.phamtan.base.email.data_structure.FileRecord;
 import com.phamtan.base.email.request.EmailRequest;
 import com.phamtan.base.email.request.SimpleEmailMessageImpl;
 import com.phamtan.base.enumeration.EmailEnum;
@@ -46,24 +47,26 @@ public class EmailService {
         String response;
         MimeMessage message = javaMailSender.createMimeMessage();
         Map<String, String> model = new HashMap<>();
+        List<FileRecord> fileRecordList = new ArrayList<>();
+
         try {
             List<File> file = new ArrayList<>();
             MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
                     StandardCharsets.UTF_8.name());
-            File imageFile = new File("/home/allinone/Pictures/lion.jpg");
+            
             List<EmailContentData> data = request.getContent();
 
             for(EmailContentData email : data){
                 if(email.getKey().equals(EmailEnum.IMAGE)){
-                    File fileTmp = new File(email.getValue().getData());
-                    helper.addInline(email.getValue().getName(),fileTmp);
+                    File fileTmp = new File(email.getData());
+                    fileRecordList.add(new FileRecord(email.getName(),fileTmp));
                 }
                 else if(email.getKey().equals(EmailEnum.FILE)){
-                    File fileTmp = new File(email.getValue().getData());
-                    helper.addAttachment(email.getValue().getName(),fileTmp);
+                    File fileTmp = new File(email.getData());
+                    helper.addAttachment(email.getName(),fileTmp);
                 }
                 else if(email.getKey().equals(EmailEnum.TEXT)){
-                    model.put(email.getValue().getName(), email.getValue().getData());
+                    model.put(email.getName(), email.getData());
                 }
             }
             helper.setTo(request.getTo());
@@ -71,6 +74,9 @@ public class EmailService {
             helper.setSubject(request.getSubject());
             String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
             helper.setText(html, true);
+            for (FileRecord fileRecord:fileRecordList){
+                helper.addInline(fileRecord.getName(),fileRecord.getFile());
+            }
             javaMailSender.send(message);
             response = "Email has been sent to :" + request.getTo();
         } catch (MessagingException | IOException | TemplateException e) {
