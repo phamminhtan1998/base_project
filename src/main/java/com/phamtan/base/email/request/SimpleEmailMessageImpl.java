@@ -18,7 +18,7 @@ public class SimpleEmailMessageImpl {
         StringBuilder content= new StringBuilder();
         for(EmailContentData emailContentData : data){
             if(emailContentData.getKey().equals(EmailEnum.TEXT)){
-                content.append(emailContentData.getValue().getData()).append("\n");
+                content.append(emailContentData.getData()).append("\n");
             }
         }
         simpleMailMessage.setText(content.toString());
