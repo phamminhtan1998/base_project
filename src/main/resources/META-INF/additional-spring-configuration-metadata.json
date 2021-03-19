@@ -11,7 +11,7 @@
       "description": "Secret key for app of the one signal."
     },
     {
-      "name": "phamtan.email.url",
+      "name": "phamtan.onesignal.url",
       "type": "java.lang.String",
       "description": "Url of one signal /n Default https://onesignal.com/api/v1/notifications."
     },
