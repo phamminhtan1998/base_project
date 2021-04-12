@@ -35,7 +35,7 @@ public class CallApiUtil<T> {
         if(response.getStatusCode()== HttpStatus.OK){
             return "Tọa thông báo thành công";
         }
-        else return "Tạo thôn báo thất bại";
+        else return "Tạo thông báo thất bại";
     }
 
     public String callGetMethodApi(String url) throws URISyntaxException {
